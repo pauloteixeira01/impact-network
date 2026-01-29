@@ -1,8 +1,14 @@
-# Welcome to your Expo app 👋
+# Impact Network
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Impact Network is an app that connects volunteers with nearby social causes. Using the user’s location, the platform identifies volunteering opportunities in their area. The goal is to make social engagement easier, fostering positive impact in an accessible and effective way.
 
-## Get started
+### Features
+
+- Geolocation: Shows nearby social causes.
+- Volunteer profiles: Allows users to sign up and find opportunities.
+- Cause details: Descriptions of each social project and how to participate.
+
+The vision of making local social impact easier. We are focused on delivering a reliable, high-quality experience for everyone involved.
 
 1. Install dependencies
 
@@ -33,18 +39,4 @@ When you're ready, run:
 npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.s
