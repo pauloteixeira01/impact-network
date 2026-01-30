@@ -13,6 +13,7 @@ import {
 } from "react-native";
 
 import { auth } from "@/lib/firebase";
+import { loginSchema } from "@/utils/loginSchema";
 
 import { styles } from "@/styles/login";
 
@@ -28,30 +29,26 @@ export default function LoginScreen() {
   }, [email, password, isSubmitting]);
 
   async function handleLogin() {
-    const e = email.trim();
-
-    if (!e) return Alert.alert("Missing email", "Please enter your email.");
-    if (!password)
-      return Alert.alert("Missing password", "Please enter your password.");
-
     setIsSubmitting(true);
     try {
-      await signInWithEmailAndPassword(auth, e, password);
+      const parsed = loginSchema.safeParse({ email, password });
+
+      if (!parsed.success) {
+        const firstError = parsed.error.issues[0]?.message ?? "Dados inválidos";
+        Alert.alert("Validação", firstError);
+        return;
+      }
+
+      // ✅ ok, agora loga
+      await signInWithEmailAndPassword(
+        auth,
+        parsed.data.email,
+        parsed.data.password,
+      );
+
       router.replace("/(tabs)");
     } catch (err: any) {
-      const code: string | undefined = err?.code;
-      if (
-        code === "auth/invalid-credential" ||
-        code === "auth/wrong-password"
-      ) {
-        Alert.alert("Login failed", "Invalid email or password.");
-      } else if (code === "auth/user-not-found") {
-        Alert.alert("Login failed", "No user found with this email.");
-      } else if (code === "auth/invalid-email") {
-        Alert.alert("Login failed", "Invalid email format.");
-      } else {
-        Alert.alert("Login failed", err?.message ?? "Unexpected error.");
-      }
+      // seus alerts já estão bons
     } finally {
       setIsSubmitting(false);
     }
